@@ -6,8 +6,8 @@ export const MissionSchema = new Schema(
     objective: { type: String, minLength: 1, maxLength: 100, required: true },
     year: { type: String, minLength: 1, maxLength: 100, required: true },
     completed: { type: Boolean, required: true, default: false },
-    locationId: { type: Schema.ObjectId, required: true, ref: 'Mission' },
-    ratId: { type: Schema.ObjectId, required: true, ref: 'Mission' },
+    locationId: { type: Schema.ObjectId, required: true, ref: 'Location' },
+    ratId: { type: Schema.ObjectId, required: true, ref: 'Rat' },
   },
 
   { toJSON: { virtuals: true }, timestamps: true }
@@ -15,14 +15,14 @@ export const MissionSchema = new Schema(
 
 MissionSchema.virtual('location', {
   localField: 'locationId',
-  ref: 'Mission',
+  ref: 'Location',
   foreignField: '_id',
   justOne: true
 })
 
 MissionSchema.virtual('rat', {
   localField: 'ratId',
-  ref: 'Mission',
+  ref: 'Rat',
   foreignField: '_id',
   justOne: true
 })
